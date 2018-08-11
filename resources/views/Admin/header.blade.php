@@ -9,33 +9,54 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="/Admin/css/font.css">
 	<link rel="stylesheet" href="/Admin/css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="/Admin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/Admin/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/Admin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="Admin/css/jquery.ui.all.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="Admin/css/jquery-ui.custom.css" media="screen">
+
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="/Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/Admin/js/xadmin.js"></script>
+<style>
+    .mws-form-message.error {
+    background-color: #ffcbca;
+    background-image: url(../images/core/message-error.png);
+    border-color: #eb979b;
+    color: #9b4449;
+}
 
+.mws-form-message.success {
+    background-color: #e1f1c0;
+    background-image: url(../images/core/message-success.png);
+    border-color: #b5d56d;
+    color: #62a426;
+}
+</style>
 </head>
 <body>
     <!-- 顶部开始 -->
-    <div class="container">
+<div class="container">
         <div class="logo"><a href="./index.html">X-admin v2.0</a></div>
         <div class="left_open">
-            <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+            <i title="展开左侧栏" class="iconfont"></i>
         </div>
         <ul class="layui-nav left fast-add" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">+新增</a>
-            <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('资讯','http://www.baidu.com')"><i class="iconfont">&#xe6a2;</i>资讯</a></dd>
-              <dd><a onclick="x_admin_show('图片','http://www.baidu.com')"><i class="iconfont">&#xe6a8;</i>图片</a></dd>
-               <dd><a onclick="x_admin_show('用户','http://www.baidu.com')"><i class="iconfont">&#xe6b8;</i>用户</a></dd>
+            <a href="javascript:;">+新增<span class="layui-nav-more"></span></a>
+            <dl class="layui-nav-child layui-anim layui-anim-upbit"> <!-- 二级菜单 -->
+              <dd><a onclick="x_admin_show('资讯','http://www.baidu.com')"><i class="iconfont"></i>资讯</a></dd>
+              <dd><a onclick="x_admin_show('图片','http://www.baidu.com')"><i class="iconfont"></i>图片</a></dd>
+               <dd><a onclick="x_admin_show('用户','http://www.baidu.com')"><i class="iconfont"></i>用户</a></dd>
             </dl>
           </li>
-        </ul>
+        <span class="layui-nav-bar" style="left: 58px; top: 40px; width: 0px; opacity: 0;"></span></ul>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;">admin<span class="layui-nav-more"></span></a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
               <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
@@ -43,7 +64,7 @@
             </dl>
           </li>
           <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
-        </ul>
+        <span class="layui-nav-bar"></span></ul>
         
     </div>
     <!-- 顶部结束 -->
@@ -267,4 +288,27 @@
           <ul class="layui-tab-title">
             <li class="home"><i class="layui-icon">&#xe68e;</i>我的桌面</li>
           </ul>
+
           <div class="layui-tab-content">
+
+            @if (session('success'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            <strong>提示信息!</strong> {{ session('success') }}
+            </div>
+            @elseif(session('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            <strong>提示信息!</strong> {{ session('error') }}
+            </div>
+            @else
+
+            @endif
+            
+            @section('form')
+
+            @show

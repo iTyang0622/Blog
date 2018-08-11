@@ -15,3 +15,12 @@ Route::get('/', function () {
     // return view('welcome');
     return view('Admin.index');
 });
+
+
+
+
+ DB::listen(function($sql, $bindings, $time) {
+                // dump($sql);
+            });
+Route::resource('/admin/articles','Admin\ArticleController');
+Route::post('/admin/articles','Admin\ArticleController@index');
